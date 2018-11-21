@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, View, TextInput } from 'react-native';
+import {
+  AppRegistry,
+  StyleSheet,
+  View,
+  TextInput,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
 import Logo from './Logo';
 import { name as appName } from '../../../app';
@@ -8,7 +15,7 @@ import Triangle_up from './Triangle_up';
 
 import { Dimensions } from 'react-native';
 
-let height = Dimensions.get('window').height / 3; //full height
+let height = Dimensions.get('window').height / 2.5;
 
 export default class Login extends Component<Props> {
   render() {
@@ -26,6 +33,10 @@ export default class Login extends Component<Props> {
             style={styles.loginInputs}
             placeholder={'     password'}
             placeholderTextColor={'gray'}
+          />
+          <Image
+            style={{ alignSelf: 'center' }}
+            source={require('./go-button.png')}
           />
         </View>
       </View>
