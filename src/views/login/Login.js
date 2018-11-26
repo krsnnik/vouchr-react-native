@@ -22,7 +22,6 @@ let height = Dimensions.get('window').height / 2.5;
 export default class Login extends Component<Props> {
   static propTypes = {
     onSuccess: PropTypes.func,
-    clickRegister: PropTypes.func,
   };
 
   constructor(props) {
@@ -37,49 +36,41 @@ export default class Login extends Component<Props> {
       },
     };
     this.clickLogin = this.clickLogin.bind(this);
+    this.login = this.login.bind(this);
   }
 
   clickLogin() {
     const { username, password } = this.state;
-    this.login(username, password).then(json => {
-      if (json.error) {
-        this.setState({
-          error: {
-            is: true,
-            header: 'Bad Credentials',
-            message: 'Cannot login try again',
-          },
-        });
-      } else {
-        Alert.alert('SUCCESS');
-        if (this.props.onSuccess) {
-          this.props.onSuccess();
+    this.login(username, password)
+      .then(response => response.json())
+      .then(responseJson => {
+        if (responseJson.error) {
+          this.setState({
+            error: {
+              is: true,
+              header: 'Bad Credentials',
+              message: 'Cannot login try again',
+            },
+          });
+          console.warn(responseJson.error);
+        } else {
+          console.warn(responseJson);
         }
-      }
-    });
+      });
   }
 
-  async login(username, password) {
-    try {
-      let response = await fetch(
-        'https://api.vouchr.co/accounts/verify_login',
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-          }),
-        },
-      );
-      let responseJson = await response.json();
-      return responseJson;
-    } catch (error) {
-      console.error(error);
-    }
+  login(username, password) {
+    return fetch('https://api.vouchr.co/accounts/verify_login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
   }
 
   render() {
@@ -92,13 +83,15 @@ export default class Login extends Component<Props> {
             style={styles.loginInputs}
             placeholder={'     username'}
             placeholderTextColor={'gray'}
+            onChangeText={text => this.setState({ username: text })}
           />
           <TextInput
             style={styles.loginInputs}
             placeholder={'     password'}
             placeholderTextColor={'gray'}
+            onChangeText={text => this.setState({ password: text })}
           />
-          <TouchableOpacity onPress={this.clickLogin()}>
+          <TouchableOpacity onPress={this.clickLogin}>
             <Image
               style={{ alignSelf: 'center' }}
               source={require('./go-button.png')}
