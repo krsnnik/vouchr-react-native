@@ -9,7 +9,11 @@
   "dependencies": {
     "react": "16.6.1",
     "react-native": "0.57.5",
-    "react-native-triangle": "0.0.9"
+    "react-native-elements": "^1.0.0-beta7",
+    "react-native-gesture-handler": "^1.0.9",
+    "react-native-triangle": "0.0.9",
+    "react-native-vector-icons": "^6.1.0",
+    "react-navigation": "^3.0.1"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

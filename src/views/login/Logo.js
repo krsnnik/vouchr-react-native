@@ -4,7 +4,7 @@ import { View, Image, AppRegistry, StyleSheet } from 'react-native';
 import { Dimensions } from 'react-native';
 
 let width = Dimensions.get('window').width; //full width
-let height = Dimensions.get('window').height / 3; //full height
+let height = Dimensions.get('window').height / 4;
 
 export default class Logo extends Component<Props> {
   render() {
