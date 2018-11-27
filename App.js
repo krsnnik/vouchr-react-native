@@ -3,44 +3,25 @@ import { StyleSheet, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { Dimensions } from 'react-native';
 import Login from './src/views/login/Login';
-/*import Profile from '/src/views/profile/Profile'*/
+import Profile from './src/views/profile/Profile';
 
 let height = Dimensions.get('window').height;
 
-type Props = {};
-class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Login
-          onSuccess={() => {
-            return true;
-          }}
-        />
-      </View>
-    );
-  }
-}
-
-const AppNavigator = createStackNavigator(
+const RootStack = createStackNavigator(
   {
-    App: {
-      screen: App,
+    Login: {
+      screen: Login,
     },
-    /*    Profile: {
+    Profile: {
       screen: Profile,
-    },*/
-  },
-  {
-    initialRouteName: 'App',
-  },
-  {
-    headerMode: 'none',
-    header: {
-      visibility: false,
     },
+  },
+  {
+    initialRouteName: 'Login',
   },
 );
+
+const AppContainer = createAppContainer(RootStack);
 
 const styles = StyleSheet.create({
   container: {
@@ -49,4 +30,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createAppContainer(AppNavigator);
+export default class App extends React.Component {
+  static navigationOptions = { title: 'Welcome', header: null };
+  render() {
+    return <AppContainer />;
+  }
+}
