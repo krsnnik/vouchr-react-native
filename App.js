@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { Dimensions } from 'react-native';
 import Login from './src/views/login/Login';
-import Profile from './src/views/profile/Profile';
-
-let height = Dimensions.get('window').height;
+import Home from './src/views/home/Home';
+import Logo from './src/views/home/Logo';
+import CreateVouch from './src/views/vouch/create/CreateVouch';
 
 const RootStack = createStackNavigator(
   {
     Login: {
       screen: Login,
     },
-    Profile: {
-      screen: Profile,
+    Home: {
+      screen: Home,
+    },
+    CreateVouch: {
+      screen: CreateVouch,
     },
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Home',
+    animationEnabled: false,
+    transitionConfig: () => ({
+      containerStyle: {
+        backgroundColor: '#000000',
+      },
+    }),
+    defaultNavigationOptions: {
+      headerTitle: <Logo />,
+      headerTitleContainerStyle: {
+        justifyContent: 'center',
+        alignSelf: 'center',
+      },
+      headerStyle: {
+        backgroundColor: '#303C48',
+      },
+      headerMode: 'none',
+    },
   },
 );
 
 const AppContainer = createAppContainer(RootStack);
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#303C48',
-    height: height,
-  },
-});
 
 export default class App extends React.Component {
   static navigationOptions = { title: 'Welcome', header: null };

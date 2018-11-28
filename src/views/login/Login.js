@@ -9,15 +9,11 @@ import {
 
 import Logo from './Logo';
 import Triangle_up from './Triangle_up';
-
 import { Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Input } from 'react-native-elements';
-
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 let height = Dimensions.get('window').height / 2.5;
 let fullHeight = Dimensions.get('window').height;
@@ -59,7 +55,7 @@ export default class Login extends Component<Props> {
             },
           });
         } else {
-          this.props.navigation.navigate('Profile');
+          this.props.navigation.navigate('Home');
           console.warn(responseJson);
         }
       })
