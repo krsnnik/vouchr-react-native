@@ -3,23 +3,23 @@ import {
   AppRegistry,
   StyleSheet,
   View,
-  TextInput,
   Image,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
 
 import Logo from './Logo';
-import { name as appName } from '../../../app';
-import App from '../../../App';
 import Triangle_up from './Triangle_up';
-
 import { Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Input } from 'react-native-elements';
 
 let height = Dimensions.get('window').height / 2.5;
+let fullHeight = Dimensions.get('window').height;
 
 export default class Login extends Component<Props> {
+  static navigationOptions = { title: 'Welcome', header: null };
   static propTypes = {
     onSuccess: PropTypes.func,
   };
@@ -44,7 +44,9 @@ export default class Login extends Component<Props> {
     this.login(username, password)
       .then(response => response.json())
       .then(responseJson => {
+        console.warn(responseJson);
         if (responseJson.error) {
+          console.warn(responseJson.error);
           this.setState({
             error: {
               is: true,
@@ -52,10 +54,13 @@ export default class Login extends Component<Props> {
               message: 'Cannot login try again',
             },
           });
-          console.warn(responseJson.error);
         } else {
+          this.props.navigation.navigate('Home');
           console.warn(responseJson);
         }
+      })
+      .catch(error => {
+        console.warn(error);
       });
   }
 
@@ -63,40 +68,50 @@ export default class Login extends Component<Props> {
     return fetch('https://api.vouchr.co/accounts/verify_login', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: username,
-        password: password,
+        username,
+        password,
       }),
     });
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Logo />
-        <Triangle_up />
-        <View style={styles.formContainer}>
-          <TextInput
-            style={styles.loginInputs}
-            placeholder={'     username'}
-            placeholderTextColor={'gray'}
-            onChangeText={text => this.setState({ username: text })}
-          />
-          <TextInput
-            style={styles.loginInputs}
-            placeholder={'     password'}
-            placeholderTextColor={'gray'}
-            onChangeText={text => this.setState({ password: text })}
-          />
-          <TouchableOpacity onPress={this.clickLogin}>
-            <Image
-              style={{ alignSelf: 'center' }}
-              source={require('./go-button.png')}
+      <View style={styles.outerContainer}>
+        <View style={styles.container}>
+          <Logo />
+          <Triangle_up />
+          <View style={styles.formContainer}>
+            <Input
+              containerStyle={styles.inputContainer}
+              inputContainerStyle={styles.loginInputs}
+              placeholder="username"
+              placeholderTextColor="#a8a8a8"
+              rightIcon={<Icon name="user-o" size={24} color="#F66358" />}
+              rightIconContainerStyle={styles.iconContainer}
+              onChangeText={text => this.setState({ username: text })}
             />
-          </TouchableOpacity>
+            <Input
+              containerStyle={styles.inputContainer}
+              inputContainerStyle={styles.loginInputs}
+              placeholder="password"
+              placeholderTextColor="#a8a8a8"
+              rightIcon={
+                <Icon2 name="lock-outline" size={24} color="#F66358" />
+              }
+              rightIconContainerStyle={styles.iconContainer}
+              onChangeText={text => this.setState({ password: text })}
+              secureTextEntry={true}
+            />
+            <TouchableOpacity onPress={this.clickLogin}>
+              <Image
+                style={{ alignSelf: 'center' }}
+                source={require('./go-button.png')}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -104,6 +119,10 @@ export default class Login extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    backgroundColor: '#303C48',
+    height: fullHeight,
+  },
   container: {
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -121,6 +140,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignContent: 'center',
+  },
+  inputContainer: {
+    alignSelf: 'center',
+  },
+  iconContainer: {
+    paddingRight: 10,
   },
 });
 

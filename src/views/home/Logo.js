@@ -10,7 +10,7 @@ export default class Logo extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('./voucher-logo-white.png')} />
+        <Image source={require('./vouchr-logo-color.png')} />
       </View>
     );
   }
@@ -18,12 +18,6 @@ export default class Logo extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    height: height,
-    width: width,
-    alignSelf: 'flex-start',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F66358',
   },
 });
 
