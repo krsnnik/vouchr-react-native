@@ -18,7 +18,7 @@ const RootStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'CreateVouch',
     animationEnabled: false,
     transitionConfig: () => ({
       containerStyle: {
