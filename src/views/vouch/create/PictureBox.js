@@ -13,13 +13,19 @@ export default class PictureBox extends Component<Props> {
     super(props);
     this.state = {
       imageDisplayMode: 'none',
-      imageUri: '',
       showIconAndButtons: 'flex',
+      imageMime: '',
+      imageBase64: '',
     };
   }
 
   render() {
-    const { imageDisplayMode, imageUri, showIconAndButtons } = this.state;
+    const {
+      imageDisplayMode,
+      showIconAndButtons,
+      imageMime,
+      imageBase64,
+    } = this.state;
     return (
       <View style={styles.container}>
         {/*This is the image tile, when the form first loads it is hidden, once
@@ -34,7 +40,7 @@ export default class PictureBox extends Component<Props> {
             height,
             width,
           }}
-          imageSrc={{ uri: imageUri }}
+          imageSrc={{ uri: `data:${imageMime};base64,${imageBase64}` }}
           iconContainerStyle={{
             flexDirection: 'column',
             justifyContent: 'flex-start',
@@ -48,7 +54,8 @@ export default class PictureBox extends Component<Props> {
               this.setState({
                 imageDisplayMode: 'none',
                 showIconAndButtons: 'flex',
-                imageUri: '',
+                imageMime: '',
+                imageBase64: '',
               }),
           }}
         />
@@ -77,11 +84,13 @@ export default class PictureBox extends Component<Props> {
                 width,
                 height,
                 cropping: true,
+                includeBase64: true,
               }).then(image => {
                 this.setState({
-                  imageUri: image.valueOf().path,
                   imageDisplayMode: 'flex',
                   showIconAndButtons: 'none',
+                  imageBase64: image.valueOf().data,
+                  imageMime: image.valueOf().mime,
                 });
                 console.log(height);
               })
@@ -96,11 +105,13 @@ export default class PictureBox extends Component<Props> {
                 width,
                 height,
                 cropping: true,
+                includeBase64: true,
               }).then(image => {
                 this.setState({
-                  imageUri: image.valueOf().path,
                   imageDisplayMode: 'flex',
                   showIconAndButtons: 'none',
+                  imageBase64: image.valueOf().data,
+                  imageMime: image.valueOf().mime,
                 });
               })
             }
