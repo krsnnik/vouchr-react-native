@@ -1,35 +1,78 @@
 import React, { Component } from 'react';
 import { View, AppRegistry, StyleSheet, Text, TextInput } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button, Input } from 'react-native-elements';
 import { Dimensions } from 'react-native';
 import PictureBox from './PictureBox';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 let width = Dimensions.get('window').width - 20;
 let height = Dimensions.get('window').height / 6;
 
 export default class CreateVouch extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      restaurantName: '',
+      dishName: '',
+      endorsement: '',
+      tags: '',
+      imageMime: '',
+      imageData: '',
+    };
+    this.handlePreview = this.handlePreview.bind(this);
+    this.handleCreateVouch = this.handleCreateVouch.bind(this);
+    this.getImage = this.getImage.bind(this);
+  }
+
   static navigationOptions = {
     headerLeft: null,
   };
+
+  getImage(data, mime) {
+    this.setState({ imageData: data, imageMime: mime });
+  }
+
+  handlePreview() {
+    console.log(this.state);
+  }
+
+  handleCreateVouch() {
+    console.log(this.state);
+  }
+
   render() {
-    let options = { year: 'numeric', month: 'long', day: 'numeric' };
     let currentDate = new Date();
+    const {
+      restaurantName,
+      dishName,
+      endorsement,
+      tags,
+      imageMime,
+      imageData,
+    } = this.state;
     return (
       <View style={styles.container}>
         <Input
           containerStyle={styles.inputContainer}
+          inputStyle={styles.inputTextStyle}
           inputContainerStyle={styles.loginInputs}
           placeholder="Restaurant Name..."
           placeholderTextColor="#a8a8a8"
+          rightIcon={<Icon name="building" size={24} color="#a8a8a8" />}
+          rightIconContainerStyle={styles.iconContainer}
+          onChangeText={text => this.setState({ restaurantName: text })}
         />
         <Input
           containerStyle={styles.inputContainer}
+          inputStyle={styles.inputTextStyle}
           inputContainerStyle={styles.loginInputs}
           placeholder="Name of Dish..."
           placeholderTextColor="#a8a8a8"
+          rightIcon={<Icon name="cutlery" size={24} color="#a8a8a8" />}
+          rightIconContainerStyle={styles.iconContainer}
+          onChangeText={text => this.setState({ dishName: text })}
         />
-        <PictureBox />
+        <PictureBox sendImage={this.getImage} />
         <View style={styles.postedDateContainer}>
           <Text style={styles.posted}>Posted / </Text>
           <Text style={styles.dateString}>{currentDate.toDateString()}</Text>
@@ -44,6 +87,7 @@ export default class CreateVouch extends Component<Props> {
           placeholderTextColor="#a8a8a8"
           multiline={true}
           scrollEnabled={true}
+          onChangeText={text => this.setState({ endorsement: text })}
         />
         <View style={styles.boxContainer}>
           <View style={styles.vouchLabel}>
@@ -51,20 +95,26 @@ export default class CreateVouch extends Component<Props> {
           </View>
           <Input
             containerStyle={styles.inputContainer}
+            inputStyle={styles.inputTextStyle}
             inputContainerStyle={styles.loginInputs}
             placeholder="Start typing some tags..."
             placeholderTextColor="#a8a8a8"
+            rightIcon={<Icon name="tags" size={24} color="#a8a8a8" />}
+            rightIconContainerStyle={styles.iconContainer}
+            onChangeText={text => this.setState({ tags: text })}
           />
           <View style={styles.buttonContainer}>
             <Button
               title={'Preview'}
               buttonStyle={styles.altButton}
               titleStyle={styles.altButtonTitle}
+              onPress={this.handlePreview}
             />
             <Button
               title={'Vouch'}
               buttonStyle={styles.button}
               titleStyle={styles.buttonTitle}
+              onPress={this.handleCreateVouch}
             />
           </View>
         </View>
@@ -108,6 +158,7 @@ const styles = StyleSheet.create({
     height: 140,
     textAlignVertical: 'top',
     paddingLeft: 10,
+    color: '#303C48',
   },
   vouchLabel: {
     paddingLeft: 10,
@@ -154,6 +205,12 @@ const styles = StyleSheet.create({
   altButtonTitle: {
     fontSize: 11,
     color: '#F66358',
+  },
+  iconContainer: {
+    paddingRight: 10,
+  },
+  inputTextStyle: {
+    color: '#303C48',
   },
 });
 

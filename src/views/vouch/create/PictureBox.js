@@ -92,7 +92,7 @@ export default class PictureBox extends Component<Props> {
                   imageBase64: image.valueOf().data,
                   imageMime: image.valueOf().mime,
                 });
-                console.log(height);
+                this.props.sendImage(image.valueOf().data, image.valueOf().mime );
               })
             }
           />
