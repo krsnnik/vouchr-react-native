@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Input } from 'react-native-elements';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 let height = Dimensions.get('window').height / 2.5;
 let fullHeight = Dimensions.get('window').height;
@@ -79,7 +80,11 @@ export default class Login extends Component<Props> {
 
   render() {
     return (
-      <View style={styles.outerContainer}>
+        <KeyboardAwareScrollView
+            style={{ backgroundColor: '#303C48' }}
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            contentContainerStyle={styles.container}
+        >
         <View style={styles.container}>
           <Logo />
           <Triangle_up />
@@ -113,7 +118,7 @@ export default class Login extends Component<Props> {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
