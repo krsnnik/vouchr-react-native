@@ -72,6 +72,8 @@ export default class CreateVouch extends Component<Props> {
           rightIcon={<Icon name="building" size={24} color="#a8a8a8" />}
           rightIconContainerStyle={styles.iconContainer}
           onChangeText={text => this.setState({ restaurantName: text })}
+          autoCapitalize="words"
+          selectTextOnFocus={true}
         />
         <Input
           containerStyle={styles.inputContainer}
@@ -82,6 +84,7 @@ export default class CreateVouch extends Component<Props> {
           rightIcon={<Icon name="cutlery" size={24} color="#a8a8a8" />}
           rightIconContainerStyle={styles.iconContainer}
           onChangeText={text => this.setState({ dishName: text })}
+          selectTextOnFocus={true}
         />
         <PictureBox sendImage={this.getImage} />
         <View style={styles.postedDateContainer}>
@@ -99,6 +102,7 @@ export default class CreateVouch extends Component<Props> {
           multiline={true}
           scrollEnabled={true}
           onChangeText={text => this.setState({ endorsement: text })}
+          selectTextOnFocus={true}
         />
         <View style={styles.boxContainer}>
           <View style={styles.vouchLabel}>
@@ -113,6 +117,7 @@ export default class CreateVouch extends Component<Props> {
             rightIcon={<Icon name="tags" size={24} color="#a8a8a8" />}
             rightIconContainerStyle={styles.iconContainer}
             onChangeText={text => this.setState({ tags: text })}
+            selectTextOnFocus={true}
           />
           <View style={styles.buttonContainer}>
             <Button

@@ -80,11 +80,11 @@ export default class Login extends Component<Props> {
 
   render() {
     return (
-        <KeyboardAwareScrollView
-            style={{ backgroundColor: '#303C48' }}
-            resetScrollToCoords={{ x: 0, y: 0 }}
-            contentContainerStyle={styles.container}
-        >
+      <KeyboardAwareScrollView
+        style={{ backgroundColor: '#303C48' }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={styles.container}
+      >
         <View style={styles.container}>
           <Logo />
           <Triangle_up />
@@ -97,6 +97,7 @@ export default class Login extends Component<Props> {
               rightIcon={<Icon name="user-o" size={24} color="#F66358" />}
               rightIconContainerStyle={styles.iconContainer}
               onChangeText={text => this.setState({ username: text })}
+              selectTextOnFocus={true}
             />
             <Input
               containerStyle={styles.inputContainer}
@@ -109,6 +110,7 @@ export default class Login extends Component<Props> {
               rightIconContainerStyle={styles.iconContainer}
               onChangeText={text => this.setState({ password: text })}
               secureTextEntry={true}
+              selectTextOnFocus={true}
             />
             <TouchableOpacity onPress={this.clickLogin}>
               <Image
