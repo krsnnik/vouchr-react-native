@@ -90,6 +90,7 @@ export default class Login extends Component<Props> {
           <Triangle_up />
           <View style={styles.formContainer}>
             <Input
+              inputStyle={{ color: '#a8a8a8' }}
               containerStyle={styles.inputContainer}
               inputContainerStyle={styles.loginInputs}
               placeholder="username"
@@ -100,6 +101,7 @@ export default class Login extends Component<Props> {
               selectTextOnFocus={true}
             />
             <Input
+              inputStyle={{ color: '#a8a8a8' }}
               containerStyle={styles.inputContainer}
               inputContainerStyle={styles.loginInputs}
               placeholder="password"
@@ -114,8 +116,8 @@ export default class Login extends Component<Props> {
             />
             <TouchableOpacity onPress={this.clickLogin}>
               <Image
-                style={{ alignSelf: 'center' }}
-                source={require('./go-button.png')}
+                style={{ alignSelf: 'center', width: 85, height: 90 }}
+                source={{uri: 'https://i.imgur.com/ZD6bD8P.png'}}
               />
             </TouchableOpacity>
           </View>

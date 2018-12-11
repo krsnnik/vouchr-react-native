@@ -10,7 +10,8 @@ export default class Logo extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('./voucher-logo-white.png')} />
+        <Image source={{uri: 'https://i.imgur.com/yjU26K4.png'}}
+        style={{width: 178, height: 40}}/>
       </View>
     );
   }
