@@ -10,15 +10,17 @@ export default class Logo extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('./vouchr-logo-color.png')} />
+        <Image
+          source={{ uri: 'https://i.imgur.com/diX9EkO.png' }}
+          style={{ width: 94, height: 21 }}
+        />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
 });
 
 AppRegistry.registerComponent(Logo, () => Logo);

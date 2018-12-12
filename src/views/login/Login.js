@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Input } from 'react-native-elements';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 let height = Dimensions.get('window').height / 2.5;
 let fullHeight = Dimensions.get('window').height;
@@ -79,12 +80,17 @@ export default class Login extends Component<Props> {
 
   render() {
     return (
-      <View style={styles.outerContainer}>
+      <KeyboardAwareScrollView
+        style={{ backgroundColor: '#303C48' }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={styles.container}
+      >
         <View style={styles.container}>
           <Logo />
           <Triangle_up />
           <View style={styles.formContainer}>
             <Input
+              inputStyle={{ color: '#a8a8a8' }}
               containerStyle={styles.inputContainer}
               inputContainerStyle={styles.loginInputs}
               placeholder="username"
@@ -92,8 +98,10 @@ export default class Login extends Component<Props> {
               rightIcon={<Icon name="user-o" size={24} color="#F66358" />}
               rightIconContainerStyle={styles.iconContainer}
               onChangeText={text => this.setState({ username: text })}
+              selectTextOnFocus={true}
             />
             <Input
+              inputStyle={{ color: '#a8a8a8' }}
               containerStyle={styles.inputContainer}
               inputContainerStyle={styles.loginInputs}
               placeholder="password"
@@ -104,16 +112,17 @@ export default class Login extends Component<Props> {
               rightIconContainerStyle={styles.iconContainer}
               onChangeText={text => this.setState({ password: text })}
               secureTextEntry={true}
+              selectTextOnFocus={true}
             />
             <TouchableOpacity onPress={this.clickLogin}>
               <Image
-                style={{ alignSelf: 'center' }}
-                source={require('./go-button.png')}
+                style={{ alignSelf: 'center', width: 85, height: 90 }}
+                source={{uri: 'https://i.imgur.com/ZD6bD8P.png'}}
               />
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }

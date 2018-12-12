@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { View, AppRegistry, StyleSheet, Text, TextInput } from 'react-native';
+import ReactNative, {
+  View,
+  AppRegistry,
+  StyleSheet,
+  Text,
+  TextInput,
+} from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { Dimensions } from 'react-native';
 import PictureBox from './PictureBox';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 let width = Dimensions.get('window').width - 20;
 let height = Dimensions.get('window').height / 6;
@@ -51,7 +58,11 @@ export default class CreateVouch extends Component<Props> {
       imageData,
     } = this.state;
     return (
-      <View style={styles.container}>
+      <KeyboardAwareScrollView
+        style={{ backgroundColor: 'white' }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={styles.container}
+      >
         <Input
           containerStyle={styles.inputContainer}
           inputStyle={styles.inputTextStyle}
@@ -61,6 +72,8 @@ export default class CreateVouch extends Component<Props> {
           rightIcon={<Icon name="building" size={24} color="#a8a8a8" />}
           rightIconContainerStyle={styles.iconContainer}
           onChangeText={text => this.setState({ restaurantName: text })}
+          autoCapitalize="words"
+          selectTextOnFocus={true}
         />
         <Input
           containerStyle={styles.inputContainer}
@@ -71,6 +84,7 @@ export default class CreateVouch extends Component<Props> {
           rightIcon={<Icon name="cutlery" size={24} color="#a8a8a8" />}
           rightIconContainerStyle={styles.iconContainer}
           onChangeText={text => this.setState({ dishName: text })}
+          selectTextOnFocus={true}
         />
         <PictureBox sendImage={this.getImage} />
         <View style={styles.postedDateContainer}>
@@ -88,6 +102,7 @@ export default class CreateVouch extends Component<Props> {
           multiline={true}
           scrollEnabled={true}
           onChangeText={text => this.setState({ endorsement: text })}
+          selectTextOnFocus={true}
         />
         <View style={styles.boxContainer}>
           <View style={styles.vouchLabel}>
@@ -102,6 +117,7 @@ export default class CreateVouch extends Component<Props> {
             rightIcon={<Icon name="tags" size={24} color="#a8a8a8" />}
             rightIconContainerStyle={styles.iconContainer}
             onChangeText={text => this.setState({ tags: text })}
+            selectTextOnFocus={true}
           />
           <View style={styles.buttonContainer}>
             <Button
@@ -118,7 +134,7 @@ export default class CreateVouch extends Component<Props> {
             />
           </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
