@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { Provider } from 'react-redux';
+
+import { store, } from './store';
+
 import Login from './src/views/login/Login';
 import Home from './src/views/home/Home';
 import Logo from './src/views/home/Logo';
@@ -44,6 +48,6 @@ const AppContainer = createAppContainer(RootStack);
 export default class App extends React.Component {
   static navigationOptions = { title: 'Welcome', header: null };
   render() {
-    return <AppContainer />;
+      return <Provider store={store}><AppContainer /></Provider>;
   }
 }
