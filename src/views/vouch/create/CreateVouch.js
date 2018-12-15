@@ -20,9 +20,7 @@ export default class CreateVouch extends Component<Props> {
     super(props);
     this.state = {
       restaurantName: '',
-      dishName: '',
-      endorsement: '',
-      tags: '',
+      order: '',
       imageMime: '',
       imageData: '',
     };
@@ -51,9 +49,7 @@ export default class CreateVouch extends Component<Props> {
     let currentDate = new Date();
     const {
       restaurantName,
-      dishName,
-      endorsement,
-      tags,
+      order,
       imageMime,
       imageData,
     } = this.state;
@@ -75,17 +71,6 @@ export default class CreateVouch extends Component<Props> {
           autoCapitalize="words"
           selectTextOnFocus={true}
         />
-        <Input
-          containerStyle={styles.inputContainer}
-          inputStyle={styles.inputTextStyle}
-          inputContainerStyle={styles.loginInputs}
-          placeholder="Name of Dish..."
-          placeholderTextColor="#a8a8a8"
-          rightIcon={<Icon name="cutlery" size={24} color="#a8a8a8" />}
-          rightIconContainerStyle={styles.iconContainer}
-          onChangeText={text => this.setState({ dishName: text })}
-          selectTextOnFocus={true}
-        />
         <PictureBox sendImage={this.getImage} />
         <View style={styles.postedDateContainer}>
           <Text style={styles.posted}>Posted / </Text>
@@ -93,32 +78,18 @@ export default class CreateVouch extends Component<Props> {
         </View>
 
         <View style={styles.vouchLabel}>
-          <Text style={styles.label}>Your Vouch</Text>
+          <Text style={styles.label}>What did you eat?</Text>
         </View>
         <TextInput
           style={styles.vouch}
-          placeholder="Write your endorsement here..."
+          placeholder="Tell us what you ordered!"
           placeholderTextColor="#a8a8a8"
           multiline={true}
           scrollEnabled={true}
-          onChangeText={text => this.setState({ endorsement: text })}
+          onChangeText={text => this.setState({ order: text })}
           selectTextOnFocus={true}
         />
         <View style={styles.boxContainer}>
-          <View style={styles.vouchLabel}>
-            <Text style={styles.label}>Tags</Text>
-          </View>
-          <Input
-            containerStyle={styles.inputContainer}
-            inputStyle={styles.inputTextStyle}
-            inputContainerStyle={styles.loginInputs}
-            placeholder="Start typing some tags..."
-            placeholderTextColor="#a8a8a8"
-            rightIcon={<Icon name="tags" size={24} color="#a8a8a8" />}
-            rightIconContainerStyle={styles.iconContainer}
-            onChangeText={text => this.setState({ tags: text })}
-            selectTextOnFocus={true}
-          />
           <View style={styles.buttonContainer}>
             <Button
               title={'Preview'}
