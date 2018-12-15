@@ -6,7 +6,7 @@ import { Button, Tile } from 'react-native-elements';
 import ImagePicker from 'react-native-image-crop-picker';
 
 let width = Dimensions.get('window').width - 20;
-let height = Dimensions.get('window').height / 4.5;
+let height = Dimensions.get('window').height / 2.55;
 
 export default class PictureBox extends Component<Props> {
   constructor(props) {
