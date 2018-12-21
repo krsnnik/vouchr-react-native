@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "prettier":
+      "prettier --write --single-quote --trailing-comma all src/**/*.jsx src/**/*.css"
   },
   "dependencies": {
     "appcenter": "1.10.0",
@@ -16,6 +18,7 @@
     "react-native-gesture-handler": "^1.0.10",
     "react-native-image-crop-picker": "^0.21.3",
     "react-native-keyboard-aware-scroll-view": "^0.7.4",
+    "react-native-maps": "^0.22.1",
     "react-native-triangle": "0.0.9",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^3.0.1",
