@@ -10,6 +10,12 @@ target 'VouchrReactNative' do
 
   # Pods for VouchrReactNative
 
+pod 'React', :path => '../node_modules/react-native', :subspecs => [ 'RCTImage', ]
+pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  platform :ios, '9.0'
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'VouchrReactNativeTests' do
     inherit! :search_paths
     # Pods for testing

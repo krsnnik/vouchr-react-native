@@ -6,21 +6,47 @@ PODS:
     - AppCenter/Core
   - AppCenterReactNativeShared (1.10.0):
     - AppCenter/Core (= 1.11.0)
+  - React (0.57.5):
+    - React/Core (= 0.57.5)
+  - react-native-maps (0.22.1):
+    - React
+  - React/Core (0.57.5):
+    - yoga (= 0.57.5.React)
+  - React/RCTImage (0.57.5):
+    - React/Core
+    - React/RCTNetwork
+  - React/RCTNetwork (0.57.5):
+    - React/Core
+  - yoga (0.57.5.React)
 
 DEPENDENCIES:
   - AppCenter/Analytics (~> 1.11.0)
   - AppCenter/Crashes (~> 1.11.0)
   - AppCenterReactNativeShared (~> 1.10.0)
+  - react-native-maps (from `../node_modules/react-native-maps`)
+  - React/RCTImage (from `../node_modules/react-native`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AppCenter
     - AppCenterReactNativeShared
 
+EXTERNAL SOURCES:
+  React:
+    :path: "../node_modules/react-native"
+  react-native-maps:
+    :path: "../node_modules/react-native-maps"
+  yoga:
+    :path: "../node_modules/react-native/ReactCommon/yoga"
+
 SPEC CHECKSUMS:
   AppCenter: 3bccf8d733e337d0db574dd4cb0e33ab9637b7f2
   AppCenterReactNativeShared: a77b000c2ac6dc2e44472621d7d0770f196e5822
+  React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
+  yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 8e44bb246dec8c04f7644cbb723b465c1d32ef44
+PODFILE CHECKSUM: 13c42471649e0114bcf755cbc6fe93540ee07370
 
 COCOAPODS: 1.5.3
