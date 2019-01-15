@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "prettier":
-      "prettier --write --single-quote --trailing-comma all src/**/*.jsx src/**/*.css"
+    "prettier": "prettier --write --single-quote --trailing-comma all src/**/*.jsx src/**/*.css"
   },
   "dependencies": {
     "appcenter": "1.10.0",
@@ -26,6 +25,7 @@
     "react-router-redux": "^4.0.8",
     "redux": "^4.0.1",
     "redux-api-middleware": "^3.0.1",
+    "redux-persist": "^5.10.0",
     "redux-refresh-token": "^0.1.0",
     "redux-thunk": "^2.3.0",
     "validator": "^10.9.0"

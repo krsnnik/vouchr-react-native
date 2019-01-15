@@ -1,17 +1,9 @@
 import React, { Component } from "react";
-import { View, AppRegistry, StyleSheet, Text } from "react-native";
+import { View, AppRegistry, StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
-import { Button, Tile } from "react-native-elements";
-
-import MapView from "react-native-maps";
+import { Button } from "react-native-elements";
 
 let height = Dimensions.get("window").height;
-
-const mapStyles = StyleSheet.create({
-  map: {
-    ...StyleSheet.absoluteFillObject
-  }
-});
 
 export default class Home extends Component<Props> {
   static navigationOptions = {
